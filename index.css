@@ -1,0 +1,42 @@
+body{
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  text-align: center;
+}
+
+.buttonContainer{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-evenly;
+  font-size: 20px;
+  margin: 10px 20px;
+  padding: 10px;
+  gap:20px;
+}
+
+/* all button styling */ 
+button{
+  background-color: purple;
+  padding: 10px;
+  border: none;
+  color:white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+button:hover{
+  content: attr(title);
+  background-color: #BF40BF;
+}
+
+/* Text area */
+#textArea1{
+  width: 1485px;
+  height: 824px;
+  border:2px black solid;
+  align-items: start;
+  text-align: start;
+}
