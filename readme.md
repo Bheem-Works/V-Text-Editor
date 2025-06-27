@@ -5,7 +5,7 @@ no hard to find any features and the other's functionallity, features;
 -- This V-Text-Editor is still going on day by day the functionallity will be launched and update comes. So the user can easily store 
 there files and the text easily and edits it and save it also. There are many features which will be comes in future so don't worry about it. 
 
--- The features that we have :
+-- The features that we have : <br>
 1.Bold > to make a text bold;<br> 
 2.Italic > to make a text italic;<br> 
 3.Undo > to undo text what you written previously;<br>
