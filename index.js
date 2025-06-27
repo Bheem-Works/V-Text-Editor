@@ -13,10 +13,18 @@ function undo() {}
 
 function redo() {}
 
-function upperCase() {}
+function upperCase() {
+  document.getElementById("textArea1").style.textTransform = "uppercase";
+}
 
-function lowerCase() {}
+function lowerCase() {
+  document.getElementById("textArea1").style.textTransform = "lowercase";
+}
 
-function capitalize() {}
+function capitalize() {
+  document.getElementById("textArea1").style.textTransform = "capitalize";
+}
 
-function clearText() {}
+function clearText() {
+  document.getElementById("textArea1").value = "";
+}
