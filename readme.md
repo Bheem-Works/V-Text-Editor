@@ -18,3 +18,5 @@ there files and the text easily and edits it and save it also. There are many fe
 
 -- For now this is what we have, well the changes and the update begins the file and this document will also track the changes of it. 
 
+--- Having a problem witht the undo and the redo. We have to track the previous positions and the current positions and switch between it. 
+--- How to do change that? 
