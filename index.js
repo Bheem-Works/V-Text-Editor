@@ -35,3 +35,11 @@ function capitalize() {
 function clearText() {
   document.getElementById("textArea1").value = "";
 }
+
+// undo and the redo flow examples
+// ['text','texto','textp']
+// 1        2         3
+//  when the user click the undo it will minus and go back to the previous state;
+// undo clicked then the previous then it will go back to the previous index;
+// The three index is remove after the user clicked the undo at once.
+// 1        2
