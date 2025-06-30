@@ -23,3 +23,16 @@ there files and the text easily and edits it and save it also. There are many fe
 
 
 --- Work flow of the undo and the redo....;
+
+    Create arrays and store the item and the words into the text phase. ['']
+
+    like this. 
+    []
+    ['','man'] the man is typed and we put this into the list. 
+    and then we have to bring arrays valeus back and forward so we have to get the index value of this. initally the index value is the 0; 
+    and as the user click the undo and redo. Then the functionallity will be executed; 
+    Undo  ---> decrement--; 
+    Redo  ----> increment++; 
+
+    if the user click the undo => index will decrement and when the index will decreemnt it will give the previous value; and vise verca; 
+
