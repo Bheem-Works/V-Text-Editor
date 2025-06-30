@@ -20,3 +20,6 @@ there files and the text easily and edits it and save it also. There are many fe
 
 --- Having a problem witht the undo and the redo. We have to track the previous positions and the current positions and switch between it. 
 --- How to do change that? 
+
+
+--- Work flow of the undo and the redo....;

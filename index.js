@@ -36,10 +36,16 @@ function clearText() {
   document.getElementById("textArea1").value = "";
 }
 
-// undo and the redo flow examples
-// ['text','texto','textp']
-// 1        2         3
-//  when the user click the undo it will minus and go back to the previous state;
-// undo clicked then the previous then it will go back to the previous index;
-// The three index is remove after the user clicked the undo at once.
-// 1        2
+// Initial state: history = [''], currentIndex = 0.
+// User types "vim": updateInput("vim") → history = ['', 'vim'], currentIndex = 1.
+// User deletes to "vi": updateInput("vi") → history = ['', 'vim', 'vi'], currentIndex = 2.
+// User clicks undo: undo() → currentIndex = 1, returns "vim".
+// User clicks undo again: undo() → currentIndex = 0, returns "" (empty string).
+// User clicks redo: redo() → currentIndex = 1, returns "vim".
+// User clicks redo again: redo() → currentIndex = 2, returns "vi".
+//
+
+let name = ["vim"];
+let currentIndex = 0;
+let pushName = name.push("vimo");
+console.log(pushName);
