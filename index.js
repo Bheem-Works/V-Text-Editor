@@ -45,6 +45,13 @@ function clearText() {
 // User clicks redo again: redo() → currentIndex = 2, returns "vi".
 //
 
+// Get the input value;
+const textValue = document.getElementById("textArea1").value;
+const paragraph = document.createElement("p");
+paragraph.textContent = paragraph;
+document.body.appendChild(paragraph);
+console.log(textValue);
+
 let name = ["vim"];
 let currentIndex = 0;
 let pushName = name.push("vimo");
