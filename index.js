@@ -46,13 +46,15 @@ function clearText() {
 //
 
 // Get the input value;
-const textValue = document.getElementById("textArea1").value;
 const paragraph = document.createElement("p");
-paragraph.textContent = paragraph;
-document.body.appendChild(paragraph);
-console.log(textValue);
+const textInput = document.getElementById("textArea1");
+textInput.addEventListener("change", changeInput);
+function changeInput(event) {
+  paragraph.textContent = event.target.value;
+  document.body.appendChild(paragraph);
+  const array = event.target.value;
+  const threadArray = [...array]; // To get the all text seprated. And easy to undo and the redo;
+  console.log("array", threadArray);
+}
 
-let name = ["vim"];
-let currentIndex = 0;
-let pushName = name.push("vimo");
-console.log(pushName);
+// I need to convert this text to the arrays;
