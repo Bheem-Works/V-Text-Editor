@@ -11,15 +11,6 @@ function italic() {
   document.getElementById("textArea1").style.fontStyle = "italic";
 }
 
-// I need to make the undo and redo sections;
-// But the video where saying the undo and the redo treee list.
-function undo() {
-  let undo = "this is the undo";
-  console.log(undo);
-}
-
-function redo() {}
-
 function upperCase() {
   document.getElementById("textArea1").style.textTransform = "uppercase";
 }
@@ -49,12 +40,61 @@ function clearText() {
 const paragraph = document.createElement("p");
 const textInput = document.getElementById("textArea1");
 textInput.addEventListener("change", changeInput);
-function changeInput(event) {
-  paragraph.textContent = event.target.value;
-  document.body.appendChild(paragraph);
-  const array = event.target.value;
-  const threadArray = [...array]; // To get the all text seprated. And easy to undo and the redo;
-  console.log("array", threadArray);
-}
 
-// I need to convert this text to the arrays;
+// undo and the redo;
+const undo = document.getElementById("undo");
+const redo = document.getElementById("redo");
+
+function changeInput(event) {
+  paragraph.textContent = event.target.value; // Demo..
+  document.body.appendChild(paragraph); // Demo..
+
+  const array = [...event.target.value];
+  // const threadArray = [...array]; // To get the all text seprated. And easy to undo and the redo;
+  console.log("array", array);
+
+  const historyArray = [""];
+  const currentIndex = 0;
+
+  class textEditor {
+    constructor() {
+      this.history = [""];
+      this.currentIndex = 0;
+      // By using the chat gpt i know that i can also acess the outside varaible to the class;
+      undo.addEventListener("click", this.undoOnly);
+      redo.addEventListener("click", this.redoOnly);
+    }
+
+    getUpdateValue(input) {
+      this.history = this.history.slice(0, this.currentIndex + 1);
+      this.currentIndex++;
+      this.history.push(input);
+    }
+
+    undoOnly() {
+      // this is for the only undo; we have to decrement the value;
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+        this.history[this.currentIndex];
+      }
+      return this.history[0];
+    }
+
+    // for the redo();
+    redoOnly() {
+      if (this.currentIndex < this.history.length - 1) {
+        this.currentIndex++;
+        this.history[this.currentIndex];
+      }
+      return this.history[this.currentIndex];
+    }
+
+    getUdpateValue() {
+      this.history[this.currentIndex];
+    }
+  }
+
+  const editorAppend = new textEditor();
+  editorAppend.getUdpateValue("vim");
+  console.log(editorAppend);
+}
