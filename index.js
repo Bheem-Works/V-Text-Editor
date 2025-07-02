@@ -43,4 +43,36 @@ class textEditor {
     this.history.push(input);
     this.currentIndex++;
   }
+
+  undo() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+    document.getElementById("textArea1").value =
+      this.history[this.currentIndex];
+    paragraph.textContent = this.history[this.currentIndex];
+    return this.history[this.currentIndex];
+  }
+
+  redo() {
+    if (this.currentIndex < this.history.length - 1) {
+      this.currentIndex++;
+    }
+    document.getElementById("textArea1").value =
+      this.history[this.currentIndex];
+    paragraph.textContent = this.history[this.currentIndex];
+    return this.history[this.currentIndex];
+  }
+
+  getInputValue() {
+    return this.history[this.currentIndex];
+  }
 }
+
+const editor = new textEditor();
+
+textInput.addEventListener("input", (event) => {
+  paragraph.textContent = event.target.value;
+  editor.getUpdateValue(event.target.value);
+  console.log("currentValue", editor.getInputValue());
+});
