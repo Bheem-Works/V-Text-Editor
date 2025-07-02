@@ -36,12 +36,21 @@ class textEditor {
     this.currentIndex = 0;
     undo.addEventListener("click", () => this.undo());
     redo.addEventListener("click", () => this.redo());
+
+    const savedValue = localStorage.getItem("textValue");
+    if (savedValue) {
+      this.history.push(savedValue);
+      this.currentIndex = 1;
+      textInput.value = savedValue;
+      paragraph.textContent = savedValue;
+    }
   }
 
   getUpdateValue(input) {
     this.history = this.history.slice(0, this.currentIndex + 1);
     this.history.push(input);
     this.currentIndex++;
+    localStorage.setItem("textValue", input);
   }
 
   undo() {
@@ -74,5 +83,18 @@ const editor = new textEditor();
 textInput.addEventListener("input", (event) => {
   paragraph.textContent = event.target.value;
   editor.getUpdateValue(event.target.value);
-  console.log("currentValue", editor.getInputValue());
+  localStorage.setItem("inputValue", JSON.stringify(event.target.value));
+  const getItem = localStorage.getItem("inputValue");
+  const userData = JSON.parse(getItem);
+  paragraph.textContent = userData;
+  // console.log("currentValue", editor.getInputValue());
+});
+
+window.addEventListener("load", () => {
+  const savedValue = localStorage.getItem("textValue");
+  if (savedValue) {
+    textInput.value = savedValue;
+    paragraph.textContent = savedValue;
+    editor.getUpdateValue(savedValue);
+  }
 });
