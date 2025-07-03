@@ -35,14 +35,24 @@ class textEditor {
     this.currentIndex = 0;
     undo.addEventListener("click", () => this.undoOnly());
     redo.addEventListener("click", () => this.redoOnly());
+
+    // local storage get item of the conditions;
+  const savedValue = localStorage.getItem("textValue");
+    if(savedValue){
+     this.history.push(savedValue);
+      this.currentIndex = 1;
+      textInput.value = savedValue;
+    }
+
   }
 
   getUpdateValue(input) {
     this.history = this.history.slice(0, this.currentIndex + 1);
     this.currentIndex++;
     // set the input to the local storage.
+    this.history.push(input);
     localStorage.setItem("textValue", input);
-    return this.history.push(input);
+    
   }
 
   undoOnly() {
@@ -78,3 +88,11 @@ textInput.addEventListener("input", (event) => {
   const userData = JSON.parse(getItem);
   console.log("itemGetPlease", userData);
 });
+
+window.addEventListener('load', () => {
+  const savedValue = localStorage.getItem("textValue")
+  if(savedValue){
+    textInput.value = savedValue;
+    editor.getUpdateValue(savedValue);
+  }
+})
