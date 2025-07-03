@@ -1,10 +1,9 @@
-// Dom Set up;
+// Dom setUp
+
 document.getElementById("textArea1").style.fontSize = "30px";
 const textInput = document.getElementById("textArea1");
 const redo = document.getElementById("redo");
 const undo = document.getElementById("undo");
-const paragraph = document.createElement("p");
-document.body.appendChild(paragraph);
 
 function bold() {
   document.getElementById("textArea1").style.fontWeight = "bold";
@@ -15,11 +14,11 @@ function italic() {
 }
 
 function upperCase() {
-  document.getElementById("textArea1").style.textTransform = "uppercase";
+  document.getElementById("textArea1").style.textTransform = "upperCase";
 }
 
 function lowerCase() {
-  document.getElementById("textArea1").style.textTransform = "lowercase";
+  document.getElementById("textArea1").style.textTransform = "lowerCase";
 }
 
 function capitalize() {
@@ -27,74 +26,55 @@ function capitalize() {
 }
 
 function clearText() {
-  document.getElementById("textArea1").value = "";
+  document.getElementById("textArea1").value = " ";
 }
 
 class textEditor {
   constructor() {
     this.history = [""];
     this.currentIndex = 0;
-    undo.addEventListener("click", () => this.undo());
-    redo.addEventListener("click", () => this.redo());
-
-    const savedValue = localStorage.getItem("textValue");
-    if (savedValue) {
-      this.history.push(savedValue);
-      this.currentIndex = 1;
-      textInput.value = savedValue;
-      paragraph.textContent = savedValue;
-    }
+    undo.addEventListener("click", () => this.undoOnly());
+    redo.addEventListener("click", () => this.redoOnly());
   }
 
   getUpdateValue(input) {
     this.history = this.history.slice(0, this.currentIndex + 1);
-    this.history.push(input);
     this.currentIndex++;
+    // set the input to the local storage.
     localStorage.setItem("textValue", input);
+    return this.history.push(input);
   }
 
-  undo() {
+  undoOnly() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     }
     document.getElementById("textArea1").value =
       this.history[this.currentIndex];
-    paragraph.textContent = this.history[this.currentIndex];
     return this.history[this.currentIndex];
   }
 
-  redo() {
+  redoOnly() {
     if (this.currentIndex < this.history.length - 1) {
       this.currentIndex++;
     }
     document.getElementById("textArea1").value =
       this.history[this.currentIndex];
-    paragraph.textContent = this.history[this.currentIndex];
     return this.history[this.currentIndex];
   }
 
   getInputValue() {
-    return this.history[this.currentIndex];
+    this.history[this.currentIndex];
   }
 }
 
 const editor = new textEditor();
 
 textInput.addEventListener("input", (event) => {
-  paragraph.textContent = event.target.value;
   editor.getUpdateValue(event.target.value);
-  localStorage.setItem("inputValue", JSON.stringify(event.target.value));
-  const getItem = localStorage.getItem("inputValue");
+  // there can be be error let me check it.
+  localStorage.setItem("textValue", JSON.stringify(event.target.value));
+  const getItem = localStorage.getItem("textValue");
   const userData = JSON.parse(getItem);
-  paragraph.textContent = userData;
-  // console.log("currentValue", editor.getInputValue());
-});
-
-window.addEventListener("load", () => {
-  const savedValue = localStorage.getItem("textValue");
-  if (savedValue) {
-    textInput.value = savedValue;
-    paragraph.textContent = savedValue;
-    editor.getUpdateValue(savedValue);
-  }
+  console.log("itemGetPlease", userData);
 });
