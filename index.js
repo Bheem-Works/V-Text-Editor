@@ -31,7 +31,7 @@ function clearText() {
 
 class textEditor {
   constructor() {
-    this.history = [''];
+    this.history = [' '];
     this.currentIndex = 0;
     undo.addEventListener("click", () => this.undoOnly());
     redo.addEventListener("click", () => this.redoOnly());
